@@ -7,17 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Блокировка горячих клавиш
             document.addEventListener('keydown', function(e) {
                 // Блокировка
-                if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+                if ((e.ctrlKey || e.metaKey) && (e.code === 'KeyC' || e.code === 'KeyV' || e.code === 'KeyX')) {
                     const target = e.target;
                     if (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT') {
                         e.preventDefault();
                         return false;
                     }
                 }
-                
+
                 // Блокировка F12, Ctrl+Shift+I, Ctrl+Shift+J (DevTools)
-                if (e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
+                if (e.code === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && (e.code === 'KeyI' || e.code === 'KeyJ' || e.code === 'KeyC'))) {
                     e.preventDefault();
                     return false;
                 }
