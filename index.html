@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Комплексный тест: Python • MySQL • HTTP</title>
+    <title>Комплексный тест: Python - SQL - HTTP</title>
 </head>
 <body>
     <div class="container">
@@ -12,14 +12,14 @@
             <h1>Комплексный тест</h1>
             <p>Python - MySQL - HTTP Протокол</p>
             <div class="timer" id="timer">
-                Время: 90:00
+                Время: 16:00
             </div>
         </div>
 
         <div class="content">
             <div class="warning">
                 <strong>Внимание!</strong>
-                Копирование и вставка текста в поля ответов заблокированы. Все ответы должны быть написаны вручную. Время выполнения: 19 минут.
+                Копирование и вставка текста в поля ответов заблокированы. Все ответы должны быть написаны вручную. Время выполнения: 20 минут.
             </div>
 
             <div class="student-info">
@@ -36,10 +36,10 @@
                 <div class="question">
                     <div class="question-number">Вопрос 1</div>
                     <div class="question-text">Что выведет следующий код?</div>
-                    <div class="code-block">def func(x=[]):
+                    <div class="code-block">
+                        def func(x=[]):
                             x.append(1)
                             return x
-
                         print(func())
                         print(func())
                         print(func())</div>
@@ -55,7 +55,8 @@
                 <div class="question">
                     <div class="question-number">Вопрос 3</div>
                     <div class="question-text">Что выведет этот код?</div>
-                    <div class="code-block">data = {'a': {'b': {'c': 10}}}
+                    <div class="code-block">
+                        data = {'a': {'b': {'c': 10}}}
                         print(data['a']['b']['c'])
                         data['a']['b']['d'] = 20
                         print(data)
@@ -65,14 +66,15 @@
 
                 <div class="question">
                     <div class="question-number">Вопрос 4</div>
-                    <div class="question-text">Напишите код для чтения файла построчно и записи каждой строки в обратном порядке в новый файл.</div>
+                    <div class="question-text">Напишите код для чтения файла построчно</div>
                     <textarea name="q4" placeholder="Напишите ваш код здесь..." required></textarea>
                 </div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 5</div>
                     <div class="question-text">Что выведет следующий код, если файл test.txt не существует?</div>
-                    <div class="code-block">try:
+                    <div class="code-block">
+                        try:
                             with open('test.txt', 'r') as f:
                                 content = f.read()
                         except FileNotFoundError:
@@ -99,7 +101,8 @@
                 <div class="question">
                     <div class="question-number">Вопрос 8</div>
                     <div class="question-text">Что выведет этот код?</div>
-                    <div class="code-block">matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+                    <div class="code-block">
+                        matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
                         result = [row[1] for row in matrix]
                         print(result)
                     </div>
@@ -112,7 +115,7 @@
                     <textarea name="q9" placeholder="Напишите ваш код здесь..." required></textarea>
                 </div>
 
-                <div class="section-title">Раздел 2: MySQL (8 вопросов)</div>
+                <div class="section-title">Раздел 2: MySQL/SQLite/PostgreSQL (8 вопросов)</div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 10</div>
@@ -166,7 +169,7 @@
 
                 <div class="question">
                     <div class="question-number">Вопрос 18</div>
-                    <div class="question-text">Перечислите основные HTTP методы и опишите их назначение (GET, POST, PUT, PATCH, DELETE).</div>
+                    <div class="question-text">Перечислите основные HTTP методы и опишите их назначение.</div>
                     <textarea name="q18" placeholder="Ваш ответ..." required></textarea>
                 </div>
 
@@ -184,7 +187,7 @@
 
                 <div class="question">
                     <div class="question-number">Вопрос 21</div>
-                    <div class="question-text">Что такое REST API? Перечислите основные принципы RESTful архитектуры.</div>
+                    <div class="question-text">Опишите структуру HTTP-запроса. Из каких основных частей он состоит?</div>
                     <textarea name="q21" placeholder="Ваш ответ..." required></textarea>
                 </div>
 
@@ -196,13 +199,13 @@
 
                 <div class="question">
                     <div class="question-number">Вопрос 23</div>
-                    <div class="question-text">Объясните разницу между HTTP и HTTPS. Что такое SSL/TLS?</div>
+                    <div class="question-text">Объясните разницу между HTTP и HTTPS.</div>
                     <textarea name="q23" placeholder="Ваш ответ..." required></textarea>
                 </div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 24</div>
-                    <div class="question-text">Что такое заголовки (headers) в HTTP запросах? Назовите минимум 3 распространённых заголовка и их назначение.</div>
+                    <div class="question-text">Что такое заголовки (headers) в HTTP запросах?</div>
                     <textarea name="q24" placeholder="Ваш ответ..." required></textarea>
                 </div>
 
@@ -218,6 +221,11 @@
             <div class="success-message" id="successMessage">
                 <h2>Тест успешно отправлен!</h2>
                 <p>Ваши ответы сохранены. Можете закрыть эту страницу.</p>
+            </div>
+
+            <div class="time-up-message" id="timeUpMessage">
+                <h2>Время вышло!</h2>
+                <p>К сожалению, вы не успели завершить тест. Тест не пройден.</p>
             </div>
         </div>
     </div>
