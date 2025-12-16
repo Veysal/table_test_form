@@ -3,239 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Комплексный тест: Python • MySQL • HTTP</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .timer {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .student-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .student-info input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        .student-info input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .section-title {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin: 30px 0 20px 0;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .question {
-            background: #f8f9ff;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
-        }
-
-        .question-number {
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 1.05em;
-        }
-
-        .code-block {
-            background: #282c34;
-            color: #abb2bf;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Courier New', Consolas, monospace;
-            font-size: 0.95em;
-            margin: 15px 0;
-            white-space: pre-wrap;
-            overflow-x: auto;
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Courier New', Consolas, monospace;
-            font-size: 0.95em;
-            resize: vertical;
-            transition: border-color 0.3s;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 18px 40px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .submit-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .warning {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
-            color: #856404;
-        }
-
-        .warning strong {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .success-message {
-            display: none;
-            background: #d4edda;
-            border-left: 5px solid #28a745;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            color: #155724;
-            text-align: center;
-        }
-
-        .success-message h2 {
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.5em;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-
-        /* Запрет выделения текста в вопросах */
-        .question-text, .code-block {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📝 Комплексный тест</h1>
-            <p>Python • MySQL • HTTP Протокол</p>
+            <h1>Комплексный тест</h1>
+            <p>Python - MySQL - HTTP Протокол</p>
             <div class="timer" id="timer">
                 Время: 90:00
             </div>
@@ -243,8 +18,8 @@
 
         <div class="content">
             <div class="warning">
-                <strong>⚠️ Внимание!</strong>
-                Копирование и вставка текста в поля ответов заблокированы. Все ответы должны быть написаны вручную. Время выполнения: 90 минут.
+                <strong>Внимание!</strong>
+                Копирование и вставка текста в поля ответов заблокированы. Все ответы должны быть написаны вручную. Время выполнения: 19 минут.
             </div>
 
             <div class="student-info">
@@ -256,18 +31,18 @@
 
             <form id="testForm">
                 <!-- РАЗДЕЛ 1: PYTHON -->
-                <div class="section-title">🐍 Раздел 1: Python (9 вопросов)</div>
+                <div class="section-title">Раздел 1: Python (9 вопросов)</div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 1</div>
                     <div class="question-text">Что выведет следующий код?</div>
                     <div class="code-block">def func(x=[]):
-    x.append(1)
-    return x
+                            x.append(1)
+                            return x
 
-print(func())
-print(func())
-print(func())</div>
+                        print(func())
+                        print(func())
+                        print(func())</div>
                     <input type="text" name="q1" placeholder="Ваш ответ" required>
                 </div>
 
@@ -281,9 +56,10 @@ print(func())</div>
                     <div class="question-number">Вопрос 3</div>
                     <div class="question-text">Что выведет этот код?</div>
                     <div class="code-block">data = {'a': {'b': {'c': 10}}}
-print(data['a']['b']['c'])
-data['a']['b']['d'] = 20
-print(data)</div>
+                        print(data['a']['b']['c'])
+                        data['a']['b']['d'] = 20
+                        print(data)
+                    </div>
                     <textarea name="q3" placeholder="Ваш ответ" required></textarea>
                 </div>
 
@@ -297,12 +73,13 @@ print(data)</div>
                     <div class="question-number">Вопрос 5</div>
                     <div class="question-text">Что выведет следующий код, если файл test.txt не существует?</div>
                     <div class="code-block">try:
-    with open('test.txt', 'r') as f:
-        content = f.read()
-except FileNotFoundError:
-    print('Файл не найден')
-finally:
-    print('Завершено')</div>
+                            with open('test.txt', 'r') as f:
+                                content = f.read()
+                        except FileNotFoundError:
+                            print('Файл не найден')
+                        finally:
+                            print('Завершено')
+                    </div>
                     <textarea name="q5" placeholder="Ваш ответ" required></textarea>
                 </div>
 
@@ -323,8 +100,9 @@ finally:
                     <div class="question-number">Вопрос 8</div>
                     <div class="question-text">Что выведет этот код?</div>
                     <div class="code-block">matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-result = [row[1] for row in matrix]
-print(result)</div>
+                        result = [row[1] for row in matrix]
+                        print(result)
+                    </div>
                     <input type="text" name="q8" placeholder="Ваш ответ" required>
                 </div>
 
@@ -334,8 +112,7 @@ print(result)</div>
                     <textarea name="q9" placeholder="Напишите ваш код здесь..." required></textarea>
                 </div>
 
-                <!-- РАЗДЕЛ 2: MySQL -->
-                <div class="section-title">🗄️ Раздел 2: MySQL (8 вопросов)</div>
+                <div class="section-title">Раздел 2: MySQL (8 вопросов)</div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 10</div>
@@ -385,8 +162,7 @@ print(result)</div>
                     <textarea name="q17" placeholder="Напишите SQL запрос..." required></textarea>
                 </div>
 
-                <!-- РАЗДЕЛ 3: HTTP -->
-                <div class="section-title">🌐 Раздел 3: HTTP Протокол и API (8 вопросов)</div>
+                <div class="section-title">Раздел 3: HTTP Протокол и API (8 вопросов)</div>
 
                 <div class="question">
                     <div class="question-number">Вопрос 18</div>
@@ -440,147 +216,11 @@ print(result)</div>
             </form>
 
             <div class="success-message" id="successMessage">
-                <h2>✅ Тест успешно отправлен!</h2>
+                <h2>Тест успешно отправлен!</h2>
                 <p>Ваши ответы сохранены. Можете закрыть эту страницу.</p>
             </div>
         </div>
     </div>
-
-    <script>
-        // Защита от копирования и вставки
-        document.addEventListener('DOMContentLoaded', function() {
-            // Блокировка контекстного меню
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
-
-            // Блокировка горячих клавиш
-            document.addEventListener('keydown', function(e) {
-                // Блокировка Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A в полях ввода
-                if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 'x')) {
-                    const target = e.target;
-                    if (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT') {
-                        e.preventDefault();
-                        return false;
-                    }
-                }
-                
-                // Блокировка F12, Ctrl+Shift+I, Ctrl+Shift+J (DevTools)
-                if (e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-
-            // Блокировка вставки в поля ввода
-            const inputs = document.querySelectorAll('input[type="text"], textarea');
-            inputs.forEach(input => {
-                input.addEventListener('paste', function(e) {
-                    e.preventDefault();
-                    alert('⚠️ Вставка текста запрещена! Пожалуйста, напишите ответ вручную.');
-                    return false;
-                });
-
-                input.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    return false;
-                });
-            });
-
-            // Таймер
-            let timeLeft = 20 * 60; // 90 минут в секундах
-            const timerElement = document.getElementById('timer');
-            
-            const timerInterval = setInterval(function() {
-                timeLeft--;
-                
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerElement.textContent = `Время: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 300) { // Последние 5 минут
-                    timerElement.style.background = 'rgba(255, 0, 0, 0.3)';
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    alert('⏰ Время вышло! Тест будет автоматически отправлен.');
-                    document.getElementById('testForm').dispatchEvent(new Event('submit'));
-                }
-            }, 1000);
-
-            // Отправка формы
-            const form = document.getElementById('testForm');
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const submitBtn = document.getElementById('submitBtn');
-                const studentName = document.getElementById('studentName').value.trim();
-                const studentEmail = document.getElementById('studentEmail').value.trim();
-                const studentGroup = document.getElementById('studentGroup').value.trim();
-                
-                if (!studentName || !studentEmail || !studentGroup) {
-                    alert('⚠️ Пожалуйста, заполните информацию о себе!');
-                    return;
-                }
-                
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Отправка...';
-                
-                // Сбор данных
-                const formData = new FormData(form);
-                const answers = {
-                    timestamp: new Date().toLocaleString('ru-RU'),
-                    name: studentName,
-                    email: studentEmail,
-                    group: studentGroup
-                };
-                
-                for (let i = 1; i <= 25; i++) {
-                    answers[`q${i}`] = formData.get(`q${i}`) || '';
-                }
-                
-                // ВАЖНО: Замените ЭТУ ССЫЛКУ на вашу ссылку из Google Apps Script
-                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm5dt6TDWtUTSaho-ubSkEwbXHAXlH4HZbIGJB_sFk-fVCJyT0NamJzQUFRtHt1Jx-/exec';
-                
-                try {
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(answers)
-                    });
-                    
-                    // Показать сообщение об успехе
-                    document.getElementById('successMessage').style.display = 'block';
-                    form.style.display = 'none';
-                    document.querySelector('.student-info').style.display = 'none';
-                    document.querySelector('.warning').style.display = 'none';
-                    clearInterval(timerInterval);
-                    
-                } catch (error) {
-                    console.error('Ошибка:', error);
-                    alert('❌ Произошла ошибка при отправке. Пожалуйста, свяжитесь с преподавателем.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Отправить тест';
-                }
-            });
-
-            // Предупреждение при закрытии страницы
-            window.addEventListener('beforeunload', function(e) {
-                if (!document.getElementById('successMessage').style.display || 
-                    document.getElementById('successMessage').style.display === 'none') {
-                    e.preventDefault();
-                    e.returnValue = '';
-                    return '';
-                }
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
