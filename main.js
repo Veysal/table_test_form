@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const TEST_DURATION_MINUTES = 25;
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm5dt6TDWtUTSaho-ubSkEwbXHAXlH4HZbIGJB_sFk-fVCJyT0NamJzQUFRtHt1Jx-/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylAL_RTbOYDtdiOpuYcM2PTZgTbWMgglbBT_-OmywbaA6qrfeETH-aabO20V6CJrPx/exec';
     const NUM_QUESTIONS = 25;
 
     // --- Элементы DOM ---
