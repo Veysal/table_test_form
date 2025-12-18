@@ -18,7 +18,7 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    background: white;
+    background-color: white;
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     overflow: hidden;
@@ -26,9 +26,12 @@ body {
 
 .header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Изменения для закрепленного хедера */
+    max-width: 900px;
+    margin: 0 auto 20px auto; /* Отступ снизу */
+    border-radius: 15px; /* Возвращаем скругление */
     color: white;
     padding: 40px 30px;
-    text-align: center;
 }
 
 
@@ -36,6 +39,7 @@ body {
     font-size: 2em;
     margin-bottom: 10px;
 }
+
 
 .header p {
     font-size: 1.1em;
